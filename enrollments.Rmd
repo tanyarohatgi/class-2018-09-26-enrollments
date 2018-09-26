@@ -8,13 +8,27 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+library(knitr)
 ```
 
-```{r}
+```{r, warning=FALSE}
 x <- read_rds("enrollment.rds")
 x %>%
   select(course_name, u_grad)
 x
+
+x %>%
+  select(course_name, course_title, course_department, u_grad) %>%
+  arrange(desc(u_grad))
+
+x %>%
+  filter(!is.na(course_name)) %>% #Because there are over 20000 NAs
+  select(course_name, course_title, course_department, u_grad) %>%
+  arrange(desc(u_grad)) %>%
+  head(n = 10) %>%
+  kable(caption = "Enrollment Data") # went back and added knitr library so we have the function kable, basically to get a better looking table when knit
+
+#Put echo=FALSE to hide code in knit. Break up chanks if needed to hide only what you want to hide.
 ```
 
 

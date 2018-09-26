@@ -163,6 +163,103 @@ x %&gt;%
 ## #   instructor_full_name &lt;chr&gt;, u_grad &lt;dbl&gt;, grad &lt;dbl&gt;,
 ## #   non_degree &lt;dbl&gt;, x_reg &lt;dbl&gt;, vus &lt;dbl&gt;, employee &lt;dbl&gt;,
 ## #   withdraw &lt;dbl&gt;, total &lt;dbl&gt;</code></pre>
+<pre class="r"><code>x %&gt;%
+  select(course_name, course_title, course_department, u_grad) %&gt;%
+  arrange(desc(u_grad))</code></pre>
+<pre><code>## # A tibble: 2,751 x 4
+##    course_name                    course_title course_department    u_grad
+##    &lt;chr&gt;                          &lt;chr&gt;        &lt;chr&gt;                 &lt;dbl&gt;
+##  1 &lt;NA&gt;                           &lt;NA&gt;         &lt;NA&gt;                  26963
+##  2 Intro to Computer Science      COMPSCI 50   Computer Science        726
+##  3 The Ancient Greek Hero         CULTBLF 22   General Education       629
+##  4 Principles of Economics        ECON 10A     Economics               587
+##  5 Introduction to Probability    STAT 110     Statistics              510
+##  6 Classic Chnse Ethical &amp; Pol Th ETHRSON 18   General Education       431
+##  7 Intro to Life Sciences I       LIFESCI 1A   Molecular &amp; Cellula…    351
+##  8 Madness and Medicine           CULTBLF 34   General Education       328
+##  9 A Libertarian Perspective      ECON 1017    Economics               294
+## 10 Multivariable Calculus         MATH 21A     Mathematics             272
+## # ... with 2,741 more rows</code></pre>
+<pre class="r"><code>x %&gt;%
+  filter(!is.na(course_name)) %&gt;% #Because there are over 20000 NAs
+  select(course_name, course_title, course_department, u_grad) %&gt;%
+  arrange(desc(u_grad)) %&gt;%
+  head(n = 10) %&gt;%
+  kable(caption = &quot;Enrollment Data&quot;) # went back and added knitr library so we have the function kable, basically to get a better looking table when knit</code></pre>
+<table>
+<caption>Enrollment Data</caption>
+<thead>
+<tr class="header">
+<th align="left">course_name</th>
+<th align="left">course_title</th>
+<th align="left">course_department</th>
+<th align="right">u_grad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Intro to Computer Science</td>
+<td align="left">COMPSCI 50</td>
+<td align="left">Computer Science</td>
+<td align="right">726</td>
+</tr>
+<tr class="even">
+<td align="left">The Ancient Greek Hero</td>
+<td align="left">CULTBLF 22</td>
+<td align="left">General Education</td>
+<td align="right">629</td>
+</tr>
+<tr class="odd">
+<td align="left">Principles of Economics</td>
+<td align="left">ECON 10A</td>
+<td align="left">Economics</td>
+<td align="right">587</td>
+</tr>
+<tr class="even">
+<td align="left">Introduction to Probability</td>
+<td align="left">STAT 110</td>
+<td align="left">Statistics</td>
+<td align="right">510</td>
+</tr>
+<tr class="odd">
+<td align="left">Classic Chnse Ethical &amp; Pol Th</td>
+<td align="left">ETHRSON 18</td>
+<td align="left">General Education</td>
+<td align="right">431</td>
+</tr>
+<tr class="even">
+<td align="left">Intro to Life Sciences I</td>
+<td align="left">LIFESCI 1A</td>
+<td align="left">Molecular &amp; Cellular Biology</td>
+<td align="right">351</td>
+</tr>
+<tr class="odd">
+<td align="left">Madness and Medicine</td>
+<td align="left">CULTBLF 34</td>
+<td align="left">General Education</td>
+<td align="right">328</td>
+</tr>
+<tr class="even">
+<td align="left">A Libertarian Perspective</td>
+<td align="left">ECON 1017</td>
+<td align="left">Economics</td>
+<td align="right">294</td>
+</tr>
+<tr class="odd">
+<td align="left">Multivariable Calculus</td>
+<td align="left">MATH 21A</td>
+<td align="left">Mathematics</td>
+<td align="right">272</td>
+</tr>
+<tr class="even">
+<td align="left">The Incas</td>
+<td align="left">SOCWORLD 40</td>
+<td align="left">General Education</td>
+<td align="right">256</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>#Put echo=FALSE to hide code in knit. Break up chanks if needed to hide only what you want to hide.</code></pre>
 
 
 
